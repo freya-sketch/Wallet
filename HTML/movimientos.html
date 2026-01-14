@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html5>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Billetera digital</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link rel="stylesheet" href="css.css">
+    </head>
+
+    <body>
+
+        <!-- Encabezado -->
+        <div
+            class="container-fluid d-flex justify-content-between align-items-center p-3 shadow-sm encabezado bg-dark text-white">
+
+            <!-- Menu -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Saludo -->
+            <div class="saludo">
+                <img src="../Image/iconousuario.png" alt="Usuario" class="icono-usuario"
+                    style="width:40px; margin-right:8px;">
+                <h2 class="mb-0">Hola, Alke!</h2>
+            </div>
+
+            <!-- Saldo -->
+            <div>
+                <h3 class="monto mb-0">Saldo $60.000</h3>
+            </div>
+        </div>
+
+        <!-- Menú offcanvas -->
+        <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+            aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><img src="../Image/iso.png" alt=""
+                        class="iso">Wallet Bagcoin</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="../HTML/Transacciones.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../HTML/Deposito.html">Depositar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../HTML/Enviardinero.html">Enviar dinero</a></li>
+                </ul>
+            </div>
+        </div>
+
+         <!-- Banner -->
+    <main class="contenido">
+        <div class="banner-full">
+            <div class="contenido-banner">
+                <h2>¡Te damos la bienvenida a Wallet BagCoin!</h2>
+                <p>Ahora puedes administrar tus formas de pago y ver transacciones recientes, todo en un solo lugar.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Menú Principal</h2>
+            <label id="saldo" for="">Saldo: </label>
+            <h3>$60.000</h3>
+            <a href="Deposito.html" class="btn btn-success activo">Depositar</a>
+            <a href="Enviardinero.html" class="btn btn-success">Enviar dinero</a>
+            <a href="Transacciones.html" class="btn btn-success">Últimos movimientos</a>
+        </div>
+
+        <footer class="container-fluid d-flex footer align-items-center">
+            <div>
+                <p>© 2026 Wallet BagCoin <br> Todos los derechos reservados</p>
+            </div>
+        </footer>
+    </body>
+
+    </html>

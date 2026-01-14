@@ -1,0 +1,48 @@
+.form-container {
+    background-color: white;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-image: url('../Image/8.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.btn-success {
+    background-color: #112B45 !important;
+    border-color: #112B45 !important;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #0A1A2F !important;
+    border-color: #0A1A2F !important;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+
+
+
