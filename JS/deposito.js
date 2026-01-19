@@ -7,16 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("saldo").textContent = `Saldo $${saldoActual.toLocaleString()}`;
 
   const form = document.getElementById("depositForm");
+  const montoInput = document.getElementById("monto");
+  const submitBtn = form.querySelector("button[type='submit']");
+
+  submitBtn.disabled = true;
+
+  montoInput.addEventListener("input", () => {
+    submitBtn.disabled = montoInput.value.trim() === "";
+  });
+
   form.addEventListener("submit", e => {
     e.preventDefault();
 
-    const montoInput = document.getElementById("monto").value.trim();
-    const monto = Number(montoInput);
-
-    if (isNaN(monto) || monto <= 0) {
-      alert("Ingrese un monto válido.");
-      return;
-    }
+    const monto = Number(montoInput.value.trim());
 
     let saldo = Number(localStorage.getItem("saldo"));
     saldo += monto;
@@ -30,5 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     alert(`Depósito realizado: $${monto.toLocaleString()}`);
     form.reset();
+    submitBtn.disabled = true; 
   });
 });
+
