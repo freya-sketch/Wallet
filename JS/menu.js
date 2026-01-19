@@ -1,18 +1,24 @@
-const transacciones = [
-  { tipo: "Depósito", monto: 20000, fecha: "12/01/2026" },
-  { tipo: "Envío", monto: 5000, fecha: "12/01/2026" },
-  { tipo: "Depósito", monto: 20000, fecha: "11/01/2026" },
-  { tipo: "Envío", monto: 5000, fecha: "11/01/2026" },
-  { tipo: "Depósito", monto: 20000, fecha: "10/01/2026" }
-];
+document.addEventListener("DOMContentLoaded", () => {
+  // Inicializar saldo si no existe
+  if (!localStorage.getItem("saldo")) {
+    localStorage.setItem("saldo", 60000);
+  }
 
-const ultimas = transacciones.slice(0, 3); // solo las 3 primeras
-const lista = document.getElementById("ultimasTransacciones");
+  // Mostrar saldo actual
+  const saldoActual = Number(localStorage.getItem("saldo"));
+  document.getElementById("saldo").textContent = `Saldo $${saldoActual.toLocaleString()}`;
 
-ultimas.forEach(t => {
-  const li = document.createElement("li");
-  li.className = "list-group-item";
-  li.innerHTML = `${t.tipo} $${t.monto.toLocaleString()} 
-    <small class="text-muted d-block">${t.fecha}</small>`;
-  lista.appendChild(li);
+  // Mostrar últimas transacciones
+  const transacciones = JSON.parse(localStorage.getItem("transacciones")) || [];
+  const ultimas = transacciones.slice(0, 3);
+  const lista = document.getElementById("ultimasTransacciones");
+  lista.innerHTML = "";
+
+  ultimas.forEach(t => {
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = `${t.tipo} $${t.monto.toLocaleString()} 
+      <small class="text-muted d-block">${t.fecha}</small>`;
+    lista.appendChild(li);
+  });
 });

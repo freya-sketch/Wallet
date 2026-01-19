@@ -9,11 +9,10 @@
 
 .icono-usuario img {
     min-height: 60px;
-    min-height: 60px;
 }
 
 .monto {
-    color: #F4C542
+    color: #F4C542;
 }
 
 .encabezado h2 {
@@ -31,9 +30,10 @@
 }
 
 img {
-    width: 300px;
+    max-width: 100%;
     height: auto;
 }
+
 
 .encabezado .monto {
     font-weight: bold;

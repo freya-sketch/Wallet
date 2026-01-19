@@ -1,6 +1,15 @@
 $(function () {
-  const USUARIO_VALIDO = "admin@correo.com";
-  const CLAVE_VALIDA = "1234";
+  const USUARIOS = [
+    { email: "admin@correo.com", clave: "1234" },
+    { email: "usuario@correo.com", clave: "abcd" }
+  ];
+
+  // Al cargar la página, rellenar email si está guardado
+  const emailGuardado = localStorage.getItem("emailGuardado");
+  if (emailGuardado) {
+    $('#email').val(emailGuardado);
+    $('#recuerdame').prop('checked', true);
+  }
 
   $('#loginForm').on('submit', function (event) {
     event.preventDefault();
@@ -8,12 +17,21 @@ $(function () {
     const email = $('#email').val().trim();
     const password = $('#password').val().trim();
 
-    if (email === USUARIO_VALIDO && password === CLAVE_VALIDA) {
-      // Ocultamos el error si estaba visible
+    // Buscar usuario válido en el array
+    const usuarioValido = USUARIOS.find(u => u.email === email && u.clave === password);
+
+    if (usuarioValido) {
       $('#loginError').addClass('d-none');
+
+      // Guardar email si se marcó "Recuérdame"
+      if ($('#recuerdame').is(':checked')) {
+        localStorage.setItem("emailGuardado", email);
+      } else {
+        localStorage.removeItem("emailGuardado");
+      }
+
       window.location.href = "menu.html";
     } else {
-      // Mostramos el mensaje de error
       $('#loginError').removeClass('d-none');
     }
   });

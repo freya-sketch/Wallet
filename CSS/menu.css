@@ -23,7 +23,8 @@ main {
 
 .monto {
     font-weight: bold;
-    color: #F4C542
+    color: #F4C542;
+    font-size: 1.5rem;
 }
 
 .encabezado h2 {
@@ -92,20 +93,17 @@ main {
     max-width: 400px;
     min-height: 200px;
     aspect-ratio: 16/9;
-    border-radius: 1.2rem;
+    border-radius: 12px;
     display: flex;
     padding: 1rem;
-    color: white;
+    color: #ffcc00;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #0A1A2F;
-    color: #ffcc00;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
 
 /*Banner */
 
@@ -152,7 +150,7 @@ h3 {
 
 /* Beneficios */
 
-titulo-beneficios {
+.titulo-beneficios {
     color: #0A1A2F;
     font-weight: bold;
     text-align: center;
@@ -171,7 +169,7 @@ titulo-beneficios {
 }
 
 .card-body {
-    min-height: 120px;/
+    min-height: 120px;
 }
 
 
