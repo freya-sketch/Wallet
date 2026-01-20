@@ -14,95 +14,27 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="alert alert-${tipo} mt-3" role="alert">
         ${texto}
       </div>`;
-    document.getElementById("alert-container").innerHTML = alerta;
-    setTimeout(() => {
-      const alertaEl = document.querySelector(".alert");
-      if (alertaEl) alertaEl.remove();
-    }, 2000);
-  }
-
-  // Función para cargar contactos desde localStorage
-  function cargarContactos() {
-    const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
-    const lista = document.getElementById("listaContactos");
-    lista.innerHTML = "";
-
-    if (contactos.length === 0) {
-      lista.innerHTML = `<li class="list-group-item text-muted">No hay contactos guardados.</li>`;
-      return;
+    const contenedor = document.getElementById("alert-container");
+    if (contenedor) {
+      contenedor.innerHTML = alerta;
+      setTimeout(() => {
+        const alertaEl = contenedor.querySelector(".alert");
+        if (alertaEl) alertaEl.remove();
+      }, 2000);
+    } else {
+      // fallback si no existe el contenedor
+      alert(texto);
     }
+  }
 
-    contactos.forEach(c => {
-      const li = document.createElement("li");
-      li.className = "list-group-item d-flex justify-content-between align-items-center";
-      li.innerHTML = `
-        <div>
-          <strong>${c.nombre}</strong><br>
-          <small>CBU/Alias: ${c.cbu}, Banco: ${c.banco}</small>
-        </div>
-        <button class="btn btn-outline-success btn-sm seleccionar">Seleccionar</button>
-      `;
-      lista.appendChild(li);
+  // Seleccionar contacto → rellena el campo destinatario
+  const botones = document.querySelectorAll(".list-group-item button");
+  botones.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const nombre = btn.parentElement.querySelector("strong").textContent;
+      document.getElementById("destinatario").value = nombre;
     });
-
-    // Evento seleccionar contacto
-    document.querySelectorAll(".seleccionar").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const nombre = btn.parentElement.querySelector("strong").textContent;
-        document.getElementById("destinatario").value = nombre;
-      });
-    });
-  }
-
-  cargarContactos();
-
-  // Buscar contacto
-  const buscarInput = document.getElementById("buscarContacto");
-  if (buscarInput) {
-    buscarInput.addEventListener("input", () => {
-      const filtro = buscarInput.value.toLowerCase();
-      document.querySelectorAll("#listaContactos li").forEach(li => {
-        const nombre = li.querySelector("strong")?.textContent.toLowerCase() || "";
-        li.style.display = nombre.includes(filtro) ? "" : "none";
-      });
-    });
-  }
-
-  // Mostrar/ocultar formulario nuevo contacto
-  const btnNuevo = document.getElementById("btnNuevoContacto");
-  const btnCancelar = document.getElementById("btnCancelarContacto");
-  const formNuevo = document.getElementById("formNuevoContacto");
-
-  if (btnNuevo && formNuevo) {
-    btnNuevo.addEventListener("click", () => formNuevo.style.display = "block");
-  }
-  if (btnCancelar && formNuevo) {
-    btnCancelar.addEventListener("click", () => formNuevo.style.display = "none");
-  }
-
-  // Guardar nuevo contacto
-  if (formNuevo) {
-    formNuevo.addEventListener("submit", e => {
-      e.preventDefault();
-      const nombre = document.getElementById("nombreContacto").value.trim();
-      const cbu = document.getElementById("cbuContacto").value.trim();
-      const banco = document.getElementById("bancoContacto").value.trim();
-
-      if (!nombre || !cbu || !banco) {
-        mostrarAlerta("Completa todos los campos", "danger");
-        return;
-      }
-
-      const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
-      contactos.push({ nombre, cbu, banco });
-      localStorage.setItem("contactos", JSON.stringify(contactos));
-
-      mostrarAlerta("Contacto agregado con éxito", "success");
-      formNuevo.reset();
-      formNuevo.style.display = "none";
-      cargarContactos();
-    });
-  }
+  });
 
   // Enviar dinero → actualizar saldo y transacciones
   const form = document.getElementById("sendMoneyForm");
