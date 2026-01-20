@@ -15,9 +15,10 @@
 }
 
 .monto {
-    color: #F4C542
+    font-weight: bold;
+    color: #F4C542;
+    font-size: 1.5rem;
 }
-
 .encabezado h2 {
     font-size: 1.4rem;
     text-align: center;

@@ -12,7 +12,9 @@
 }
 
 .monto {
+    font-weight: bold;
     color: #F4C542;
+    font-size: 1.5rem;
 }
 
 .encabezado h2 {

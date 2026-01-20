@@ -4,7 +4,6 @@ $(function () {
     { email: "usuario@correo.com", clave: "abcd" }
   ];
 
-  // Al cargar la página, rellenar email si está guardado
   const emailGuardado = localStorage.getItem("emailGuardado");
   if (emailGuardado) {
     $('#email').val(emailGuardado);
@@ -17,13 +16,11 @@ $(function () {
     const email = $('#email').val().trim();
     const password = $('#password').val().trim();
 
-    // Buscar usuario válido en el array
     const usuarioValido = USUARIOS.find(u => u.email === email && u.clave === password);
 
     if (usuarioValido) {
       $('#loginError').addClass('d-none');
 
-      // Guardar email si se marcó "Recuérdame"
       if ($('#recuerdame').is(':checked')) {
         localStorage.setItem("emailGuardado", email);
       } else {
